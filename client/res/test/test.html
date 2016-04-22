@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="testApp">
+<head>
+    <meta charset="utf-8">
+    <title>editor</title>
+
+    <link href="/content/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/content/fontawesome/css/font-awesome.css" rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet"/>
+
+
+    <script src="/content/jquery/dist/jquery.js"></script>
+    <script src="/content/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/content/angular/angular.js"></script>
+    <script src="/content/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/content/angular-base64/angular-base64.js"></script>
+    <script src="/content/forge/forge.bundle.js"></script>
+
+    <script src="/angular.js"></script>
+    <script src="/config.js"></script>
+    <script src="/services/http2.js"></script>
+    <script src="/services/security.js"></script>
+    <script src="/services/api.js"></script>
+    <script type="text/javascript">
+        var app = angular.module('testApp', ['auais']);
+        app.constant('config', cfg);
+        app.config(function (securityProvider) {
+            securityProvider.pubKey(cfg.pubKey);
+        });
+        app.run(function ($rootScope,config) {
+            $rootScope.$identity = {
+                login: true,
+                userId: '1234567890',
+                token: 'qwerty'
+            };
+            $rootScope.config = config;
+        });
+        var api = {
+            url: 'http://127.0.0.1:9000',
+            security: true
+        };
+        angular.module('testApp').controller('TestController', function ($scope, http2, api) {
+
+            $scope.current = '123456';
+            $scope.click = function () {
+                api('test').request([1,2]).then(
+                        function (data) {
+                            console.log(data)
+                        }, function (data) {
+                            console.log(data)
+                        });
+
+            };
+        });
+
+
+    </script>
+
+</head>
+<body class="" style="padding: 20px;background-color:transparent " ng-controller="TestController">
+
+<div>{{current}}</div>
+<button class="btn" ng-click="click()">http</button>
+</body>
+</html>

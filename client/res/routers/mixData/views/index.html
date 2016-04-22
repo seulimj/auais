@@ -1,0 +1,108 @@
+<toolbar here="通用数据">
+
+    <toolbar-item-search drop-width="330px">
+        <form novalidate class="form-inline" ng-submit="retrieve()">
+            <div class="form-group form-group-sm">
+                <label for="search_name">type&nbsp;</label>
+                <input class="form-control" id="search_name" maxlength="5"
+                       ng-model="queryObject.query.type"
+                       ng-model-options="{updateOn:'blur'}">
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm drop-close">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </toolbar-item-search>
+    <toolbar-item-sort drop-width="170px">
+        <div sort="queryObject.sort" sort-changed="retrieve()">
+            <field key="type" >按类型升序</field>
+            <field key="type" desc>按类别降序</field>
+            <field key="name" >按名称升序</field>
+            <field key="name" desc>按名称降序</field>
+        </div>
+    </toolbar-item-sort>
+    <toolbar-item-add ng-click="insert(true)"></toolbar-item-add>
+
+
+</toolbar>
+
+
+<table class="table">
+    <tr>
+
+        <th ng-repeat="key in keys">{{key}}</th>
+        <th></th>
+
+    </tr>
+    <tr ng-repeat="item in page.items">
+
+        <td ng-repeat="key in keys">{{item[key]}}</td>
+
+        <td><a class="btn btn-danger btn-xs" ng-click="remove(item._id)">删除</a></td>
+
+    </tr>
+</table>
+
+<div pagination="page" index="queryObject.page.index" index-change="retrieve(true)"></div>
+
+<div modal-form="current" form-width="700px" form-title="自定义测试数据">
+    <div class="form-group form-group-sm">
+        <label for="type" class="col-sm-2 control-label">文档类型</label>
+
+        <div class="col-sm-10">
+            <input name="type" id="type" class="form-control"
+                   ng-model="current.item.type"
+                   messages
+                   required required-msg="文档类型"
+                   ng-maxlength="50" maxlength-msg="文档类型不应多于50个字符"/>
+        </div>
+    </div>
+
+    <div class="form-group form-group-sm">
+        <label for="name" class="col-sm-2 control-label">名称</label>
+        <div class="col-sm-10">
+            <input name="name" id="name" class="form-control"
+                   ng-model="current.item.name"
+                 />
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <div  class="col-sm-2" style="text-align: right;">
+            <label for="hasImg" class="control-label">图片</label>
+            <input type="checkbox" id="hasImg" name="hasImg" title="图片"  ng-model="customData.hasImg" >
+        </div>
+
+        <div class="col-sm-10">
+            <input name="url" id="url" class="form-control"
+                   ng-model="customData.url"
+                   value="http://localhost:9000/template/themes/common/xxx.jpg"
+                    />
+        </div>
+    </div>
+    <div ng-repeat="row in customData.rows" class="form-group form-group-sm">
+        <div  class="col-sm-2">
+            <input class="form-control" style="width:100px;text-align: right;"
+                   ng-model="row.key"
+                    />
+        </div>
+        <div class="col-sm-10">
+            <input name="name" id="name" class="form-control"
+                   ng-model="row.value"
+                    />
+        </div>
+    </div>
+    <div  class="form-group form-group-sm">
+        <div  class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <button  class="btn btn-primary" type="button" ng-click="newRow()">
+                添加新行
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

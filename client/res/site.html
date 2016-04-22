@@ -1,0 +1,107 @@
+<div ng-style="{'background-color':$bodyBackgroundColor}"
+     style="position: fixed;top: 0px;left: 0px;z-index: 200;height: 100px;width: 100%;"></div>
+
+<nav ng-class="{'navbar-inverse':$navbarInverse,'navbar-default':!$navbarInverse}" class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-1">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/index">AUAIS</a>
+        </div>
+
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#/index">
+                        <span class="glyphicon glyphicon-home visible-lg-inline visible-md-inline visible-sm-inline"></span>
+                        首页
+                    </a>
+                </li>
+
+                <li ng-repeat="item in $states" ng-class="{dropdown:item.subStates}">
+                    <a style="cursor: pointer"
+                       ng-href="{{item.subStates?'':'#/'+item.state}}"
+                       ng-class="{'dropdown-toggle':item.subStates}"
+                       data-toggle="{{item.subStates?'dropdown':''}}">
+                        {{item.name}} <span ng-if="item.subStates" class="caret"></span>
+                    </a>
+                    <ul ng-if="item.subStates" class="dropdown-menu">
+                        <li ng-repeat-start="subItem in item.subStates">
+                            <a ng-href="{{'#/'+subItem.state}}">{{subItem.name}}</a>
+                        </li>
+                        <li ng-repeat-end ng-if="!$last" class="divider"></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer;">
+                        <i class="fa fa-lg fa-user" style="margin-right: 3px"></i>
+                        {{$identity.user.name}}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="http://127.0.0.1:8080/basic/#/dict" target="_blank" style="cursor: pointer;">
+                                <span class="glyphicon glyphicon-menu-hamburger" style="margin-right: 3px"></span>
+                                我的账号
+                            </a>
+                        </li>
+                        <li>
+                            <a logout style="cursor: pointer">
+                                <span class="glyphicon glyphicon-log-out" style="margin-right: 3px"></span>
+                                注销
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer;">
+                        <i class="fa fa-cog fa-lg fa-spin"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header" style="font-size: 14px;">视觉效果：</li>
+                        <li class="divider"></li>
+                        <li ng-repeat="item in $themes">
+                            <a ng-click="$setTheme(item)" style="cursor: pointer;">
+                                <span ng-class="{'glyphicon glyphicon-heart':item===$currentTheme}"
+                                      style="width:20px;display:inline-block"></span>
+                                {{item.displayName||item.name}}
+                            </a>
+                        </li>
+
+                        <li class="divider"></li>
+                        <li class="dropdown-header" style="font-size: 14px;">页眉：</li>
+                        <li class="divider"></li>
+                        <li>
+                            <a ng-click="$setNavbarShadow(!$navbarShadow)" style="cursor: pointer;">
+                                <span ng-class="{'glyphicon glyphicon-ok':$navbarShadow}"
+                                      style="width:20px;display:inline-block"></span>
+                                阴影
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="$setNavbarInverse(!$navbarInverse)" style="cursor: pointer;">
+                                <span ng-class="{'glyphicon glyphicon-ok':$navbarInverse}" class="glyphicon"
+                                      style="width:20px;display:inline-block"></span>
+                                反色
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div ui-view>
+</div>
+

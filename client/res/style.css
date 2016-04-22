@@ -1,0 +1,11 @@
+#loading-bar .bar {
+    top: 85px;
+    z-index: 1000;
+}
+#loading-bar-spinner {
+    display: none;
+}
+
+.form-group-sm .control-label {
+    font-size: 12px;
+}

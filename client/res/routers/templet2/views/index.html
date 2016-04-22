@@ -1,0 +1,115 @@
+<toolbar here="另一个样板页面">
+
+    <toolbar-item-search drop-width="500px">
+        <input type="text"/>
+    </toolbar-item-search>
+    <toolbar-item-add ng-click="insert()"></toolbar-item-add>
+</toolbar>
+
+
+<div side>
+    <ul class="list-group">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+</div>
+<div  ng-repeat="item in page.items" class="well well-sm" style="margin-left: 215px">
+    <p>{{item._id}}</p>
+    <p>{{item.pFloat}}</p>
+    <p>{{item.pIntegers}}</p>
+    <p>{{item.pDate}}</p>
+    <p>{{item.pBoolean}}</p>
+    <p>{{item.pString}}</p>
+    <div class="btn-group btn-group-sm">
+        <button type="button" class="btn btn-info" ng-click="update(item)">选择</button>
+        <button type="button" class="btn btn-danger">删除</button>
+        <button type="button" class="btn btn-warning">添加人员</button>
+    </div>
+</div>
+
+<div pagination="page" index="queryObject.page.index" index-change="retrieve(true)" style="margin-left: 215px"></div>
+
+
+<div modal-form="current" form-width="1000px" form-title="标题">
+
+    <div class="form-group form-group-sm">
+        <label for="pFloat" class="col-sm-3 control-label">Float字段</label>
+
+        <div class="col-sm-9">
+            <input type="number" number-msg="必须为数字"
+                   messages msg-placement="bottom2" msg-show-delay="300"
+                   msg-width="500px"
+                   ng-model="current.item.pFloat"
+                   ng-model-options1="{updateOn:'blur'}"
+
+                   required required-msg="required required required required"
+                   class="form-control"
+                   name="pFloat"
+                   id="pFloat">
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label for="pIntegers" class="col-sm-3 control-label">Integers字段</label>
+
+        <div class="col-sm-9">
+            <input type="number" ng-model="current.item.pIntegers" class="form-control" required name="pIntegers"
+                   id="pIntegers">
+        </div>
+    </div>
+
+    <div class="form-group form-group-sm">
+        <label for="pDate" class="col-sm-3 control-label">Date字段</label>
+
+        <div class="col-sm-9">
+            <input drop  ng-model="current.item.pDate" class="form-control" required name="pDate" id="pDate">
+
+        </div>
+    </div>
+
+    <div class="form-group form-group-sm">
+        <label for="pString"
+               class="col-sm-3
+               control-label">String字段</label>
+
+        <div class="col-sm-9">
+            <input readonly test-drop drop drop-height="200px"
+                   ng-model="current.item.pString"
+                   messages
+                   ng-minlength="3" minlength-msg="至少三个字符"
+                   ng-maxlength="10" maxlength-msg="至多十个字符"
+                   class="form-control"
+                   required required-msg="必填"
+                   name="pString"
+                   id="pString">
+        </div>
+    </div>
+
+</div>
+
+
+

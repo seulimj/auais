@@ -1,0 +1,163 @@
+<toolbar here="样板页面">
+
+    <toolbar-item-search drop-width="400px">
+        <input name="pString" class="form-control" ng-model="gs.pString" ng-model-options="{getterSetter:true}"
+               type="text" messages1 required1 required-msg1="必填"/>
+    </toolbar-item-search>
+    <toolbar-item-add ng-click="insert()"></toolbar-item-add>
+    <toolbar-item-import></toolbar-item-import>
+    <toolbar-item-export></toolbar-item-export>
+
+</toolbar>
+
+
+<table class="table">
+    <tr>
+        <th>_id</th>
+        <th>pFloat</th>
+        <th>pIntegers</th>
+        <th>pDate</th>
+        <th>pBoolean</th>
+        <th>pString</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="item in page.items">
+        <td>{{item._id}}</td>
+        <td>{{item.pFloat}}</td>
+        <td>{{item.pIntegers}}</td>
+        <td>{{item.pDate}}</td>
+        <td>{{item.pBoolean}}</td>
+        <td>{{item.pString}}</td>
+        <td><a class="btn btn-info btn-xs" ng-click="update(item)">选择</a></td>
+        <td><a class="btn btn-danger btn-xs" ng-click="remove(item._id)">删除</a></td>
+        <td><a class="btn btn-info btn-xs" ng-click="createPerson(item._id)">添加人员</a></td>
+    </tr>
+</table>
+
+<div pagination="page" index="queryObject.page.index" index-change="retrieve(true)"></div>
+
+
+<div modal-form show="current" form-width="1000px" form-title="标题">
+
+    <div class="form-group form-group-sm">
+        <label for="pFloat" class="col-sm-3 control-label">Float字段</label>
+
+        <div class="col-sm-9">
+            <input type="number" number-msg="必须为数字"
+                   messages msg-placement="bottom2" msg-show-delay="300"
+                   msg-width="500px"
+                   ng-model="current.item.pFloat"
+                   ng-model-options="{updateOn:'blur'}"
+
+                   required required-msg="required required required required"
+                   class="form-control"
+                   name="pFloat"
+                   id="pFloat">
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label for="pIntegers" class="col-sm-3 control-label">Integers字段</label>
+
+        <div class="col-sm-9">
+            <input type="number" ng-model="current.item.pIntegers" class="form-control" required name="pIntegers"
+                   id="pIntegers">
+        </div>
+    </div>
+
+    <div class="form-group form-group-sm">
+        <label for="pDate" class="col-sm-3 control-label">Date字段</label>
+
+        <div class="col-sm-9">
+            <input drop ng-model="current.item.pDate" class="form-control" required name="pDate" id="pDate">
+
+        </div>
+    </div>
+
+    <div class="form-group form-group-sm">
+        <label for="pString"
+               class="col-sm-3
+               control-label">String字段</label>
+
+        <div class="col-sm-9">
+            <input
+                   ng-model="current.item.pString"
+                   messages
+                   ng-minlength="3" minlength-msg="至少三个字符"
+                   ng-maxlength="10" maxlength-msg="至多十个字符"
+                   class="form-control"
+                   required required-msg="必填"
+                   name="pString"
+                   id="pString">
+        </div>
+
+
+    </div>
+
+    <div class="form-group form-group-sm">
+        <label for="t1"
+               class="col-sm-3
+               control-label">test字段</label>
+
+        <div class="col-sm-9">
+            <input
+                    class="form-control"
+                    name="t1"
+                    id="t1"/>
+
+            <div name="dropdown1" drop ng-model = "me">
+                <div class="btn-group"
+                     list="a"
+                     val="state.id"
+                     toggle
+                     txt ="'姓名'+name"
+                     multiple0>
+                    <a class="btn btn-{{selected?'primary':'default'}}" ng-click="select()">
+                        <i class="fa fa-fw fa-lg fa-{{selected?'check-':''}}square-o"></i>
+                        {{item.name}}
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="form-group form-group-sm">
+        <label for="t2"
+               class="col-sm-3
+               control-label">test字段</label>
+
+        <div class="col-sm-9">
+            <input messages required  required-msg="必须输入"
+                    class="form-control"
+                    name="t2"
+                    id="t2"/>
+
+            <div name="dropdown2" drop ng-model="setMe" ng-model-options="{getterSetter:true}">
+
+                <div class="btn-group-vertical"
+                     list="a"
+                     val="state.id"
+                     toggle
+                     txt ="'姓名'+name"
+                     multiple0>
+                    <a class="btn btn-{{selected?'primary':'default'}}" ng-click="select()">
+                        <i class="fa fa-fw fa-lg fa-{{selected?'check-':''}}square-o"></i>
+                        {{item.name}}
+                    </a>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+
+

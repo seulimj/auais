@@ -1,0 +1,16 @@
+{
+  "name": "auais-client",
+  "version": "0.0.1",
+  "description": "安澳",
+  "repository": {},
+  "license": "MIT",
+
+  "dependencies": {
+    "express": "*",
+    "morgan": "*"
+  },
+
+  "devDependencies": {
+
+  }
+}

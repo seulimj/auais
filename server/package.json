@@ -1,0 +1,24 @@
+{
+  "name": "auais-server",
+  "version": "0.0.1",
+  "description": "安澳",
+  "repository": {},
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "morgan": "*",
+    "lodash": "*",
+    "async": "*",
+    "joi": "*",
+    "mongodb": "*",
+    "redis": "*",
+    "md5": "*",
+    "cors": "*",
+    "bcrypt-nodejs": "*",
+    "node-forge": "*"
+  },
+  "devDependencies": {
+    "mkdirp": "*"
+  }
+}

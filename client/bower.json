@@ -1,0 +1,14 @@
+{
+  "name": "auais-client",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "*",
+    "angular-ui-router": "*",
+    "bootstrap": "*",
+    "jquery": "*",
+    "fontawesome":"*",
+    "angular-base64":"*",
+    "forge":"*",
+    "lodash": "*"
+  }
+}
